@@ -1,25 +1,57 @@
+
+import configparser
+from collections import OrderedDict
 import csv
 
+import re
+
 import numpy
+
+import pickle
+
+class MultiOrderedDict(OrderedDict):
+    def __setitem__(self, key, value):
+        if isinstance(value, list) and key in self:
+            self[key].extend(value)
+        else:
+            super(OrderedDict,self).__setitem__(key, value)
+
+def special_match(strg, search=re.compile(r'[^A-Z]').search):
+    return not bool(search(strg))
 
 
 def calculate_tf_idf(freqij,maxi,N,nj):
     return freqij/maxi * numpy.math.log(N/nj)
 
 
+class indexer:
+
+    def __init__(self,terms,documents,matrix):
+        self.terms = terms
+        self.documents = documents
+        self.matrix = matrix
 
 def main():
 
-    # gerando matrix de peso
+
+
+
+
 
     terms = []
     documents_csv = []
     documents = []
 
-    with open('out\invert_list.csv') as csvfile:
+    # lendo o arquivo com os leia e saida
+    config = configparser.RawConfigParser(strict=False, dict_type=MultiOrderedDict)
+    config.read(['INDEX.CFG'])
+    entrada = config.get("DEFAULT", "LEIA")
+    saida = config.get("DEFAULT", "ESCREVE")
+
+    with open(entrada[0]) as csvfile:
         spamreader = csv.reader(csvfile, delimiter=';', quotechar='|')
         for row in spamreader:
-            if (len(row[0]) < 3):
+            if (len(row[0]) < 3 and special_match(row[0])):
                 continue
             terms.append(row[0])
             text = eval('[' + row[1] + ']')
@@ -41,10 +73,6 @@ def main():
             matrix[i][j] += 1
         i += 1
 
-
-    print(matrix)
-
-
     N = len(documents)
 
 
@@ -52,14 +80,12 @@ def main():
 
     column_max = []
     j = len(matrix[0]) - 1
-    print(j)
     while(j > -1):
         column_max.append(matrix[:, j].max())
         j -= 1
 
     i = 0
     for row in matrix:
-        print(i)
         j=0
 
         nj = 0
@@ -76,6 +102,10 @@ def main():
             j += 1
         i+= 1
 
+    index = indexer(terms,documents,matrix)
+    with open(saida[0],'wb') as output:
+        pickle.dump(index,output,pickle.HIGHEST_PROTOCOL)
 
-    print(matrix)
+
+
 main()

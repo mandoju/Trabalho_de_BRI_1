@@ -39,7 +39,7 @@ def ler_arquivo_clg():
 
     #lendo o arquivo com os leia e saida
     config = configparser.RawConfigParser(strict=False,dict_type=MultiOrderedDict)
-    config.read(['GLI.cfg'])
+    config.read(['GLI.CFG'])
     entradas = config.get("DEFAULT","LEIA");
     saida = config.get("DEFAULT", "ESCREVE");
 
@@ -84,7 +84,7 @@ def ler_arquivo_clg():
         else:
             print(dtd.error_log.filter_from_errors())
 
-    with open('out\invert_list.csv', 'w',newline='') as csvfile:
+    with open(saida[0], 'w',newline='') as csvfile:
         spamwriter = csv.writer(csvfile, delimiter=';',
                                 quotechar='|', quoting=csv.QUOTE_MINIMAL)
         for wd in words_documents:
