@@ -9,6 +9,9 @@ import numpy
 
 import pickle
 
+import logging
+import time
+
 class MultiOrderedDict(OrderedDict):
     def __setitem__(self, key, value):
         if isinstance(value, list) and key in self:
@@ -38,15 +41,23 @@ def main():
 
 
 
+    logging.info("Program started!")
     terms = []
     documents_csv = []
     documents = []
 
     # lendo o arquivo com os leia e saida
     config = configparser.RawConfigParser(strict=False, dict_type=MultiOrderedDict)
+    logging.info("Reading INDEX.CFG")
+
     config.read(['INDEX.CFG'])
     entrada = config.get("DEFAULT", "LEIA")
     saida = config.get("DEFAULT", "ESCREVE")
+
+
+    logging.info ("Reading " + entrada[0])
+
+    begin_time = time.perf_counter()
 
     with open(entrada[0]) as csvfile:
         spamreader = csv.reader(csvfile, delimiter=';', quotechar='|')
@@ -62,9 +73,13 @@ def main():
             if(number not in documents):
                 documents.append(number)
 
+
     matrix = numpy.zeros((len(terms),len(documents)))
     normalized_matrix = numpy.zeros(((len(terms),max(documents) + 1)))
     len(matrix)
+
+
+    logging.info ("making weight matrix")
 
     i = 0
     for term_appearance in documents_csv:
@@ -77,6 +92,8 @@ def main():
 
 
 
+
+    logging.info ("calculating td-idf.")
 
     column_max = []
     j = len(matrix[0]) - 1
@@ -103,9 +120,22 @@ def main():
         i+= 1
 
     index = indexer(terms,documents,matrix)
+
+    end_time = time.perf_counter()
+    total_time = end_time - begin_time
+
+    logging.info("total index time " + str(total_time) + " for " + str(len(terms)) + " terms and " + str(len(documents)) + " documents" )
+    logging.info("indexer made  " + str(len(terms) / total_time) + " terms per second")
+    logging.info("indexer made  " + str( len(documents) /total_time) + " documents per second" )
+
+
+
+    logging.info("writing on pickle file")
     with open(saida[0],'wb') as output:
         pickle.dump(index,output,pickle.HIGHEST_PROTOCOL)
 
+    logging.info("Finished!")
 
-
+logging.basicConfig(filename='log\indexador.log', level=logging.INFO,
+                    format='%(asctime)s\t%(levelname)s\t%(message)s')
 main()

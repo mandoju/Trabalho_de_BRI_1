@@ -1,0 +1,10 @@
+2016-04-18 20:48:38,238	INFO	Program started!
+2016-04-18 20:48:38,238	INFO	Reading INDEX.CFG
+2016-04-18 20:48:38,238	INFO	Reading out\invert_list.csv
+2016-04-18 20:48:39,733	INFO	making weight matrix
+2016-04-18 20:48:41,064	INFO	calculating td-idf.
+2016-04-18 20:48:46,687	INFO	total index time 8.448856965239779 for 9308 terms and 1215 documents
+2016-04-18 20:48:46,688	INFO	indexer made  1101.6874872299177 terms per second
+2016-04-18 20:48:46,688	INFO	indexer made  143.80643500046733 documents per second
+2016-04-18 20:48:46,688	INFO	writing on pickle file
+2016-04-18 20:48:46,896	INFO	Finished!

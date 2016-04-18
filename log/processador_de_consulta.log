@@ -1,0 +1,7 @@
+2016-04-18 20:46:23,695	INFO	Program started!
+2016-04-18 20:46:23,695	INFO	Reading PC.CFG
+2016-04-18 20:46:23,695	INFO	Starting reading xml
+2016-04-18 20:46:23,702	INFO	Reading db\cfquery.xml xml file
+2016-04-18 20:46:23,867	INFO	Inverted list made 5.825174060687224 documents per second
+2016-04-18 20:46:23,867	INFO	writing on csv
+2016-04-18 20:46:23,873	INFO	Finished!

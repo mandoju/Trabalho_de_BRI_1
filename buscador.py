@@ -8,6 +8,9 @@ import numpy
 
 import pickle
 
+import logging
+import time
+
 from scipy import spatial
 
 class MultiOrderedDict(OrderedDict):
@@ -46,21 +49,35 @@ class query_result:
 def main():
 
 
+    logging.info("Program started!")
+
+
     querys = []
     querys_results = []
 
     # lendo o arquivo com os leia e saida
     config = configparser.RawConfigParser(strict=False, dict_type=MultiOrderedDict)
+
+    logging.info("Reading PC.CFG")
+
+
     config.read(['BUSCA.CFG'])
     modelo = config.get("DEFAULT", "MODELO")
     consulta = config.get("DEFAULT", "CONSULTAS")
     resultado = config.get("DEFAULT","RESULTADOS")
 
 
+    begin_time = time.perf_counter()
+
+    logging.info("Reading model " + str(modelo[0]))
+
+
     #carregando o modelo
     with open(modelo[0], "rb") as input_file:
         indexer = pickle.load(input_file)
 
+
+    logging.info("Reading consults " + str(consulta[0]))
 
     #carregando consultas
     with open(consulta[0]) as csvfile:
@@ -69,10 +86,11 @@ def main():
             querys.append(queryNumber_queryText(row[0],row[1]))
 
 
+    logging.info("Calculating similarity")
 
     # fazendo o calcula da similaridade
     for query in querys:
-        print("making query number" + str(query.queryNumber))
+        #print("making query number" + str(query.queryNumber))
         text = query.queryText
         text = text.split()
 
@@ -101,18 +119,32 @@ def main():
         a = query_result(query.queryNumber,results)
         querys_results.append(a)
 
+    end_time = time.perf_counter()
+    total_time = end_time - begin_time
+
+    logging.info("search made " + str(len(querys_results) / total_time) + " querys per second")
+
+
+    logging.info("writing on csv")
+
     with open(resultado[0], 'w', newline='') as csvfile:
         spamwriter = csv.writer(csvfile, delimiter=';',
             quotechar='|', quoting=csv.QUOTE_MINIMAL)
 
         for result in  querys_results :
 
-            pares_ordernados = ''
+            pares_ordernados = '['
 
             for result_from_query in result.results:
                 if(result_from_query.ranking != -1):
-                    pares_ordernados += "(" + str(result_from_query.ranking) + "," + str(result_from_query.document) +"," + str(result_from_query.similarity )+ ")"
+                    pares_ordernados += "(" + str(result_from_query.ranking) + "," + str(result_from_query.document) +"," + str(result_from_query.similarity )+ "), "
 
+            pares_ordernados = pares_ordernados[:-2]
+            pares_ordernados += ']'
             spamwriter.writerow([result.queryNumber,  pares_ordernados ])
+    logging.info("Finished!")
 
+
+logging.basicConfig(filename='log\\buscador.log', level=logging.INFO,
+                    format='%(asctime)s\t%(levelname)s\t%(message)s')
 main()

@@ -1,0 +1,17 @@
+2016-04-18 20:45:48,215	INFO	Program started!
+2016-04-18 20:45:48,215	INFO	Reading GLI.CFG
+2016-04-18 20:45:48,215	INFO	GLI.CFG has been read
+2016-04-18 20:45:48,215	INFO	Reading cfc-2.dtd
+2016-04-18 20:45:48,216	INFO	cfc-2.dtd read
+2016-04-18 20:45:48,216	INFO	Starting reading xml
+2016-04-18 20:45:48,216	INFO	Reading db\cf74.xml xml file
+2016-04-18 20:45:49,431	INFO	Reading db\cf75.xml xml file
+2016-04-18 20:45:51,376	INFO	Reading db\cf76.xml xml file
+2016-04-18 20:45:54,215	INFO	Reading db\cf77.xml xml file
+2016-04-18 20:45:56,709	INFO	Reading db\cf78.xml xml file
+2016-04-18 20:45:58,968	INFO	Reading db\cf79.xml xml file
+2016-04-18 20:46:02,239	INFO	Inverted list created a list with 9488 words
+2016-04-18 20:46:02,239	INFO	Inverted list made 676.5945613587962 words per second
+2016-04-18 20:46:02,240	INFO	Inverted list made 0.4278633398137413 documents per second
+2016-04-18 20:46:02,240	INFO	Writing on csv
+2016-04-18 20:46:02,308	INFO	Finished!
