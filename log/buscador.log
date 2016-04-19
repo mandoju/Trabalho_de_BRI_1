@@ -1,13 +1,8 @@
-2016-04-18 20:46:48,291	INFO	Program started!
-2016-04-18 20:46:48,292	INFO	Reading PC.CFG
-2016-04-18 20:46:48,293	INFO	Reading model out\indexer.pkl
-2016-04-18 20:46:48,383	INFO	Reading consults out\consultas.csv
-2016-04-18 20:46:48,384	INFO	Calculating similarity
-2016-04-18 20:46:58,983	INFO	Program started!
-2016-04-18 20:46:58,983	INFO	Reading PC.CFG
-2016-04-18 20:46:58,984	INFO	Reading model out\indexer.pkl
-2016-04-18 20:46:59,075	INFO	Reading consults out\consultas.csv
-2016-04-18 20:46:59,076	INFO	Calculating similarity
-2016-04-18 20:47:29,392	INFO	search made 3.255709047280465 querys per second
-2016-04-18 20:47:29,393	INFO	writing on csv
-2016-04-18 20:47:29,859	INFO	Finished!
+2016-04-18 21:09:45,480	INFO	Program started!
+2016-04-18 21:09:45,480	INFO	Reading PC.CFG
+2016-04-18 21:09:45,480	INFO	Reading model out\indexer.pkl
+2016-04-18 21:09:45,581	INFO	Reading consults out\consultas.csv
+2016-04-18 21:09:45,582	INFO	Calculating distance
+2016-04-18 21:10:16,295	INFO	search made 3.212787643897603 querys per second
+2016-04-18 21:10:16,295	INFO	writing on csv
+2016-04-18 21:10:16,788	INFO	Finished!

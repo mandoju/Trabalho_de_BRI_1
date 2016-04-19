@@ -86,7 +86,7 @@ def main():
             querys.append(queryNumber_queryText(row[0],row[1]))
 
 
-    logging.info("Calculating similarity")
+    logging.info("Calculating distance")
 
     # fazendo o calcula da similaridade
     for query in querys:
@@ -103,11 +103,11 @@ def main():
 
         i=0
         for column in indexer.matrix.T:
-            results.append( document_similarity( indexer.documents[i] ,(1 - spatial.distance.cosine(search_vector, column)) ) )
+            results.append( document_similarity( indexer.documents[i] ,(spatial.distance.cosine(search_vector, column)) ) )
             i += 1
 
 
-        results.sort(key=lambda x: x.similarity, reverse=True)
+        results.sort(key=lambda x: x.similarity, reverse=False)
 
         i=0
         for result in results:

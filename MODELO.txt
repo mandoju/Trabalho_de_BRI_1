@@ -1,0 +1,27 @@
+O arquivo do modelo vetorial gerado pelo programa foi salvo utilizando serialização do módulo Pickle.
+Este arquivo é a serialização de um objeto que foi gerado no módulo do indexador , e ele provém da seguinte classe:
+
+class indexer:
+
+    def __init__(self,terms,documents,matrix):
+        self.terms = terms
+        self.documents = documents
+        self.matrix = matrix
+
+
+onde o atributo "terms" é um array de terms na ordem da linha da matrix ( o termo da posição 0 do array, corresponde a linha 0 da matrix).
+onde o atributo "documents" é um array de terms na ordem da coluna da matrix ( o documento da posição 0 do array , corresponde a coluna 0 da matrix).
+onde o atributo "matrix" é a matriz que representa o modelo vetorial onde cada linha representa um termo e cada coluna representa um documento.
+
+
+Logo teriamos uma estrutura assim:
+
+tx = termo x
+dx = documento x
+
+    d1  d2  d3
+t1   x   x   x
+t2   x   x   x
+t3   x   x   x
+
+onde cada célula ja possui seu peso com o tf-idf calculado.
