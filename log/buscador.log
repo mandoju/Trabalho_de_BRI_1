@@ -1,8 +1,8 @@
-2016-04-18 21:09:45,480	INFO	Program started!
-2016-04-18 21:09:45,480	INFO	Reading PC.CFG
-2016-04-18 21:09:45,480	INFO	Reading model out\indexer.pkl
-2016-04-18 21:09:45,581	INFO	Reading consults out\consultas.csv
-2016-04-18 21:09:45,582	INFO	Calculating distance
-2016-04-18 21:10:16,295	INFO	search made 3.212787643897603 querys per second
-2016-04-18 21:10:16,295	INFO	writing on csv
-2016-04-18 21:10:16,788	INFO	Finished!
+2016-04-18 21:59:47,662	INFO	Program started!
+2016-04-18 21:59:47,663	INFO	Reading PC.CFG
+2016-04-18 21:59:47,663	INFO	Reading model out\indexer.pkl
+2016-04-18 21:59:47,757	INFO	Reading consults out\consultas.csv
+2016-04-18 21:59:47,758	INFO	Calculating distance
+2016-04-18 22:00:19,345	INFO	search made 3.1248749769668835 querys per second
+2016-04-18 22:00:19,345	INFO	writing on csv
+2016-04-18 22:00:19,818	INFO	Finished!

@@ -111,7 +111,7 @@ def main():
 
         i=0
         for result in results:
-            if(result.similarity > 0):
+            if(result.similarity < 1):
                 result.add_ranking(i)
             else:
                 result.add_ranking(-1)
